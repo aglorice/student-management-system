@@ -1,11 +1,11 @@
 #include<stdio.h>
 #include<easyx.h>
 #include<string.h>
-char name_1[20]="";
-char nember_1[20]="";
-char major_1[20]="";
-char math_1[20]="";
-char english_1[20]="";
+char name_1[20];
+char nember_1[20];
+char major_1[20];
+char math_1[20];
+char english_1[20];
 struct Student
 {
 	char student[20];
@@ -13,13 +13,13 @@ struct Student
 	char major[20];
 	char math[20];
 	char english[20];
-}stu[100];//Ñ§ÉúÐÅÏ¢
-int STUDENT;//Ñ§Éú×ÜÊý
+}stu[100];//å­¦ç”Ÿä¿¡æ¯
+int STUDENT;//å­¦ç”Ÿæ€»æ•°
 char name[20];
 char nember[20];
 char major[20];
 char math[20];
-char english[20];//ÐÞ¸ÄÐÅÏ¢
+char english[20];//ä¿®æ”¹ä¿¡æ¯
 void Tab(const char*tex,int l,int z);
 IMAGE publicimg(1000, 618);
 struct Butto
@@ -29,21 +29,21 @@ struct Butto
 	int x2;
 	int y2;
 	char butto[20];
-	int z = 0;//Ä¬ÈÏ°´Å¥×´Ì¬
+	int z = 0;//é»˜è®¤æŒ‰é’®çŠ¶æ€
 };
 void textmiddle(int x, int y, int a, int b, int lotx_1, const char* test, int z);
 void Textmiddle(int q, int w, int e, int r, int lotx, const char* text);
 void gohome(int q_1, int w_1, int e_1, int r_1, int v);
 void windows();
 void windows_1();
-void Adduserimg();//ÐÅÏ¢Ìí¼Ó´°¿Ú
-void Lookuser();//ÐÅÏ¢²é¿´´°¿Ú
-void Lookupuser();//²éÕÒÓÃ»§ÐÅÏ¢
-void Deleteuser();//É¾³ýÓÃ»§
-void Modifyuser();//ÐÞ¸ÄÓÃ»§ÐÅÏ¢
-void outport();//ÐÅÏ¢µ¼³ö
-void instudate();//¶ÁÈ¡ÎÄ¼þ
-void outstudate();//µ¼³öÊý¾Ý
+void Adduserimg();//ä¿¡æ¯æ·»åŠ çª—å£
+void Lookuser();//ä¿¡æ¯æŸ¥çœ‹çª—å£
+void Lookupuser();//æŸ¥æ‰¾ç”¨æˆ·ä¿¡æ¯
+void Deleteuser();//åˆ é™¤ç”¨æˆ·
+void Modifyuser();//ä¿®æ”¹ç”¨æˆ·ä¿¡æ¯
+void outport();//ä¿¡æ¯å¯¼å‡º
+void instudate();//è¯»å–æ–‡ä»¶
+void outstudate();//å¯¼å‡ºæ•°æ®
 void outstudentfile();
 void tab_1();
 void tab_2();
@@ -55,14 +55,14 @@ void Tab_1(const char* te, int o, int p)
 {
 	int i;
 	i = o;
-	Textmiddle(50, 0, 130, 40, 30, "·µ»Ø");
+	Textmiddle(50, 0, 130, 40, 30, "è¿”å›ž");
 	while (i != p)
 	{
 		setfillcolor(WHITE);
 		fillrectangle(150, i, 240, i + 50);
 		Textmiddle(150, i, 240, i + 50, 30, "");
 		fillrectangle(250, i, 740, i + 50);
-		Textmiddle(250, i, 740, i + 50, 30, "¿´ÕâÀï");
+		Textmiddle(250, i, 740, i + 50, 30, "çœ‹è¿™é‡Œ");
 		fillrectangle(750, i, 850, i + 50);
 		Textmiddle(750, i, 850, i + 50, 30, te);
 		i += 60;
@@ -70,15 +70,15 @@ void Tab_1(const char* te, int o, int p)
 	i = o;
 	while (i != p)
 	{
-		Textmiddle(150, i, 240, i + 50, 30, "ÐÕÃû");
+		Textmiddle(150, i, 240, i + 50, 30, "å§“å");
 		i += 60;
-		Textmiddle(150, i, 240, i + 50, 30, "Ñ§ºÅ");
+		Textmiddle(150, i, 240, i + 50, 30, "å­¦å·");
 		i += 60;
-		Textmiddle(150, i, 240, i + 50, 30, "×¨Òµ");
+		Textmiddle(150, i, 240, i + 50, 30, "ä¸“ä¸š");
 		i += 60;
-		Textmiddle(150, i, 240, i + 50, 30, "ÊýÑ§");
+		Textmiddle(150, i, 240, i + 50, 30, "æ•°å­¦");
 		i += 60;
-		Textmiddle(150, i, 240, i + 50, 30, "Ó¢Óï");
+		Textmiddle(150, i, 240, i + 50, 30, "è‹±è¯­");
 		i += 60;
 	}
 }
@@ -99,15 +99,15 @@ void tab_1()
 	}
 	itoa(page, num, 10);
 	itoa(pagesum, sumpage, 10);
-	Textmiddle(50, 160, 100, 200, 23, "ÐòºÅ");
-	Textmiddle(100, 160, 200, 200, 23, "ÐÕÃû");
-	Textmiddle(200, 160, 450, 200, 23, "Ñ§ºÅ");
-	Textmiddle(450, 160, 650, 200, 23, "×¨Òµ");
-	Textmiddle(650, 160, 850, 200, 23, "ÊýÑ§");
-	Textmiddle(850, 160, 950, 200, 23, "Ó¢Óï");
-	Textmiddle(80, 550, 180, 600, 30, "ÉÏÒ»Ò³");
-	Textmiddle(820, 550, 920, 600, 30, "ÏÂÒ»Ò³");
-	Textmiddle(450, 550, 550, 600, 30, "µ¼³ö");
+	Textmiddle(50, 160, 100, 200, 23, "åºå·");
+	Textmiddle(100, 160, 200, 200, 23, "å§“å");
+	Textmiddle(200, 160, 450, 200, 23, "å­¦å·");
+	Textmiddle(450, 160, 650, 200, 23, "ä¸“ä¸š");
+	Textmiddle(650, 160, 850, 200, 23, "æ•°å­¦");
+	Textmiddle(850, 160, 950, 200, 23, "è‹±è¯­");
+	Textmiddle(80, 550, 180, 600, 30, "ä¸Šä¸€é¡µ");
+	Textmiddle(820, 550, 920, 600, 30, "ä¸‹ä¸€é¡µ");
+	Textmiddle(450, 550, 550, 600, 30, "å¯¼å‡º");
 }
 void tab_2()
 {
@@ -121,7 +121,7 @@ void tab_2()
 		pagesum = STUDENT / 8 + 1;
 	}
 	int page = 1;
-	ExMessage m;		// ¶¨ÒåÏûÏ¢±äÁ¿
+	ExMessage m;		// å®šä¹‰æ¶ˆæ¯å˜é‡
 	int z = 0;
 	int i, k, temp;
 	char num[20];
@@ -139,12 +139,12 @@ void tab_2()
 	temp = i;
 	while (z == 0)
 	{
-		// »ñÈ¡Ò»ÌõÊó±ê»ò°´¼üÏûÏ¢
+		// èŽ·å–ä¸€æ¡é¼ æ ‡æˆ–æŒ‰é”®æ¶ˆæ¯
 		m = getmessage(EM_MOUSE | EM_KEY);
 		switch (m.message)
 		{
 		case WM_LBUTTONDOWN:
-			if (m.x > 80 && m.y > 550 && m.x < 180 && m.y < 600 && page != 1)//ÉÏÒ»Ò³
+			if (m.x > 80 && m.y > 550 && m.x < 180 && m.y < 600 && page != 1)//ä¸Šä¸€é¡µ
 			{
 				page -= 1;
 				for (i = temp - 16, k = 200; i < 8 * page; i++, k += 40)
@@ -159,7 +159,7 @@ void tab_2()
 				}
 				temp = i;
 			}
-			if (m.x > 820 && m.y > 550 && m.x < 920 && m.y < 600 && page < pagesum)//ÏÂÒ»Ò³
+			if (m.x > 820 && m.y > 550 && m.x < 920 && m.y < 600 && page < pagesum)//ä¸‹ä¸€é¡µ
 			{
 				page += 1;
 				for (k = 200, i = temp; i < page * 8; i++, k += 40)
@@ -209,20 +209,20 @@ void tab_11()
 	}
 	itoa(page, num, 10);
 	itoa(pagesum, sumpage, 10);
-	Textmiddle(50, 160, 100, 200, 23, "ÐòºÅ");
-	Textmiddle(100, 160, 200, 200, 23, "ÐÕÃû");
-	Textmiddle(200, 160, 450, 200, 23, "Ñ§ºÅ");
-	Textmiddle(450, 160, 650, 200, 23, "×¨Òµ");
-	Textmiddle(650, 160, 850, 200, 23, "ÊýÑ§");
-	Textmiddle(850, 160, 950, 200, 23, "Ó¢Óï");
-	Textmiddle(80, 550, 180, 600, 30, "ÉÏÒ»Ò³");
-	Textmiddle(820, 550, 920, 600, 30, "ÏÂÒ»Ò³");
-	Textmiddle(350, 550, 400, 600, 30, "µÚ");
+	Textmiddle(50, 160, 100, 200, 23, "åºå·");
+	Textmiddle(100, 160, 200, 200, 23, "å§“å");
+	Textmiddle(200, 160, 450, 200, 23, "å­¦å·");
+	Textmiddle(450, 160, 650, 200, 23, "ä¸“ä¸š");
+	Textmiddle(650, 160, 850, 200, 23, "æ•°å­¦");
+	Textmiddle(850, 160, 950, 200, 23, "è‹±è¯­");
+	Textmiddle(80, 550, 180, 600, 30, "ä¸Šä¸€é¡µ");
+	Textmiddle(820, 550, 920, 600, 30, "ä¸‹ä¸€é¡µ");
+	Textmiddle(350, 550, 400, 600, 30, "ç¬¬");
 	Textmiddle(400, 550, 450, 600, 30, num);
-	Textmiddle(450, 550, 500, 600, 30, "Ò³");
-	Textmiddle(500, 550, 550, 600, 30, "¹²");
+	Textmiddle(450, 550, 500, 600, 30, "é¡µ");
+	Textmiddle(500, 550, 550, 600, 30, "å…±");
 	Textmiddle(550, 550, 600, 600, 30, sumpage);
-	Textmiddle(600, 550, 650, 600, 30, "Ò³");
+	Textmiddle(600, 550, 650, 600, 30, "é¡µ");
 }
 void tab_22()
 {
@@ -236,7 +236,7 @@ void tab_22()
 		pagesum = STUDENT / 8 + 1;
 	}
 	int page=1;
-	ExMessage m;		// ¶¨ÒåÏûÏ¢±äÁ¿
+	ExMessage m;		// å®šä¹‰æ¶ˆæ¯å˜é‡
 	int z = 0;
 	int i, k,temp;
 	char num[20];
@@ -254,12 +254,12 @@ void tab_22()
 	temp = i;
 	while (z==0)
 	{
-		// »ñÈ¡Ò»ÌõÊó±ê»ò°´¼üÏûÏ¢
+		// èŽ·å–ä¸€æ¡é¼ æ ‡æˆ–æŒ‰é”®æ¶ˆæ¯
 		m = getmessage(EM_MOUSE | EM_KEY);
 		switch (m.message)
 		{
 		case WM_LBUTTONDOWN:
-			if (m.x > 80 && m.y > 550 && m.x < 180 && m.y < 600&&page!=1)//ÉÏÒ»Ò³
+			if (m.x > 80 && m.y > 550 && m.x < 180 && m.y < 600&&page!=1)//ä¸Šä¸€é¡µ
 			{
 				page -= 1;
 				for (i=temp-16,k=200;i<8*page;i++,k+=40)
@@ -276,7 +276,7 @@ void tab_22()
 				}
 				temp = i;
 			}
-			if (m.x > 820 && m.y > 550 && m.x < 920 && m.y < 600&&page<pagesum)//ÏÂÒ»Ò³
+			if (m.x > 820 && m.y > 550 && m.x < 920 && m.y < 600&&page<pagesum)//ä¸‹ä¸€é¡µ
 			{
 				page += 1;
 				for (k=200,i=temp;i<page*8;i++,k+=40)
@@ -306,9 +306,9 @@ void sum()
 {
 	char num[20];
 	itoa(STUDENT, num, 10);
-	Textmiddle(750,120,850,160,23,"¹²¼Æ");
+	Textmiddle(750,120,850,160,23,"å…±è®¡");
 	Textmiddle(850,120,900,160,23,num);
-	Textmiddle(900, 120, 950, 160, 23, "ÈË");
+	Textmiddle(900, 120, 950, 160, 23, "äºº");
 }
 void instudate()
 {
@@ -348,112 +348,104 @@ void outstudentfile()
 {
 	FILE* fp;
 	int i;
-	if ((fp = fopen("C:\\Users\\40120\\Desktop\\Ñ§ÉúÐÅÏ¢", "w+")) == NULL)
+	if ((fp = fopen("C:\\Users\\40120\\Desktop\\å­¦ç”Ÿä¿¡æ¯", "w+")) == NULL)
 	{
 		fprintf(stdout, "Can't open \"wordy\" file.\n");
 		exit(EXIT_FAILURE);
 	}
-	fprintf(fp, " ÐÕÃû\t\t×¨Òµ\t\t\tÑ§ºÅ\t\t\tÊýÑ§\t\t\t¼Æµ¼\n");
+	fprintf(fp, " å§“å\t\tä¸“ä¸š\t\t\tå­¦å·\t\t\tæ•°å­¦\t\t\tè®¡å¯¼\n");
 	for (i = 0; i <STUDENT; i++)
 	{
 		fprintf(fp, "%d:", i + 1);
 		fprintf(fp, "%-4s%28s\t\t%s\t\t%s\t\t\t%s\n", stu[i].student, stu[i].studentnumber, stu[i].major, stu[i].math, stu[i].english);
 	}
-	fprintf(fp, "×Ü¼ÆÈËÊýÎª£º%d", STUDENT);
+	fprintf(fp, "æ€»è®¡äººæ•°ä¸ºï¼š%d", STUDENT);
 	fclose(fp);
 }
 void Tab(const char* tex, int l,int z)
 {
 	char str[20];
 	char num[20];
-	int i;
-	int b;
+	ExMessage m;		// å®šä¹‰æ¶ˆæ¯å˜é‡
+	int i, j;
 	int temp, k = 0;
-	i = l;
-	Textmiddle(450, 530, 550, 580, 23, "±£´æ");
-	while (i!= z)
+	j = l;
+	Textmiddle(450, 530, 550, 580, 23, "ä¿å­˜");
+	while (l!= z)
 	{
 		setfillcolor(WHITE);
-		fillrectangle(150, i, 240, i + 50);
-		Textmiddle(150, i, 240, i + 50, 30, "");
-		fillrectangle(250, i, 740, i + 50);
-		Textmiddle(250, i, 740, i + 50, 30, "¿´ÕâÀï");
-		fillrectangle(750, i, 850, i + 50);
-		Textmiddle(750, i, 850, i + 50, 30, tex);
-		i += 60;
+		fillrectangle(150, l, 240, l + 50);
+		Textmiddle(150, l, 240, l + 50, 30, "");
+		fillrectangle(250, l, 740, l + 50);
+		Textmiddle(250, l, 740, l + 50, 30, "çœ‹è¿™é‡Œ");
+		fillrectangle(750, l, 850, l + 50);
+		Textmiddle(750, l, 850, l + 50, 30, tex);
+		l += 60;
 	}
-	i = l;
-	while (i != z)
+	l= j;
+	while (l!= z)
 	{
-		Textmiddle(150, i, 240, i + 50, 30, "ÐÕÃû");
-		i += 60;
-		Textmiddle(150, i, 240, i + 50, 30, "Ñ§ºÅ");
-		i += 60;
-		Textmiddle(150, i, 240, i + 50, 30, "×¨Òµ");
-		i += 60;
-		Textmiddle(150, i, 240, i + 50, 30, "ÊýÑ§");
-		i += 60;
-		Textmiddle(150, i, 240, i + 50, 30, "Ó¢Óï");
-		i += 60;
+		Textmiddle(150, l, 240, l + 50, 30, "å§“å");
+		l += 60;
+		Textmiddle(150, l, 240, l + 50, 30, "å­¦å·");
+		l += 60;
+		Textmiddle(150, l, 240, l + 50, 30, "ä¸“ä¸š");
+		l += 60;
+		Textmiddle(150, l, 240, l + 50, 30, "æ•°å­¦");
+		l += 60;
+		Textmiddle(150, l, 240, l + 50, 30, "è‹±è¯­");
+		l += 60;
 	}
-	ExMessage m;		// ¶¨ÒåÏûÏ¢±äÁ¿
-	i = l;
+	l = j;
 	while (k==0)
 	{
-		// »ñÈ¡Ò»ÌõÊó±ê»ò°´¼üÏûÏ¢
+		// èŽ·å–ä¸€æ¡é¼ æ ‡æˆ–æŒ‰é”®æ¶ˆæ¯
 		m = getmessage(EM_MOUSE | EM_KEY);
-		b = STUDENT;
 		switch (m.message)
 		{
 		case WM_LBUTTONDOWN:
-			if (m.x > 750 && m.y > i&& m.x < 850 && m.y < i+50)
+			if (m.x > 750 && m.y > 200&& m.x < 850 && m.y < 250)
 			{
-				InputBox(name_1, 20, "ÇëÊäÈëÄãµÄÃû×Ö",0,"NULL");
-				Textmiddle(250, i, 740, i+50, 30, name_1);
-				i += 60;
-				
+				InputBox(name_1, 20, "è¯·è¾“å…¥ä½ çš„åå­—",0,"NULL");
+				Textmiddle(250, 200, 740, 250, 30, name_1);
 			}
-			if (m.x > 750 && m.y > i && m.x < 850 && m.y < i+50)
+			if (m.x > 750 && m.y > 260 && m.x < 850 && m.y < 310)
 			{
-				InputBox(nember_1, 20, "ÇëÊäÈëÄãµÄÑ§ºÅ", 0, "NULL");
-				Textmiddle(250,i, 740, i+50, 30, nember_1);
-				i += 60;
-
+				InputBox(nember_1, 20, "è¯·è¾“å…¥ä½ çš„å­¦å·", 0, "NULL");
+				Textmiddle(250,260, 740, 310, 30, nember_1);
 			}
-			if (m.x > 750 && m.y > i&& m.x < 850 && m.y < i+50)
+			if (m.x > 750 && m.y >320&& m.x < 850 && m.y < 370)
 			{
-				InputBox(major_1, 20, "ÇëÊäÈëÄãµÄ×¨Òµ", 0, "NULL");
-				Textmiddle(250, i, 740, i+50, 30, major_1);
-				i += 60;
-				
+				InputBox(major_1, 20, "è¯·è¾“å…¥ä½ çš„ä¸“ä¸š", 0, "NULL");
+				Textmiddle(250, 320, 740, 370, 30, major_1);
 			}
-			if (m.x > 750 && m.y > i && m.x < 850 && m.y < i+50)
+			if (m.x > 750 && m.y > 380 && m.x < 850 && m.y < 430)
 			{
-				InputBox(math_1, 20, "ÇëÊäÈëÄãµÄÊýÑ§³É¼¨", 0, "NULL");
-				Textmiddle(250, i, 740, i+50, 30, math_1);
-				i += 60;
-				
+				InputBox(math_1, 20, "è¯·è¾“å…¥ä½ çš„æ•°å­¦æˆç»©", 0, "NULL");
+				Textmiddle(250, 380, 740, 430, 30, math_1);
 			}
-			if (m.x > 750 && m.y >i && m.x < 850 && m.y < i+50)
+			if (m.x > 750 && m.y >440 && m.x < 850 && m.y < 490)
 			{
-				InputBox(english_1, 20, "ÇëÊäÈëÄãµÄÓ¢Óï", 0, "NULL");
-				Textmiddle(250, i, 740, i+50, 30, english_1);
-				i += 60;
-				
+				InputBox(english_1, 20, "è¯·è¾“å…¥ä½ çš„è‹±è¯­", 0, "NULL");
+				Textmiddle(250, 440, 740, 490, 30, english_1);
 			}
 			if (m.x > 450 && m.y > 530 && m.x < 550 && m.y < 580)
 			{
-				b= STUDENT;
-				strcpy(stu[b].student, name_1);
-				strcpy(stu[b].studentnumber, nember_1);
-				strcpy(stu[b].major, major_1);
-				strcpy(stu[b].math, math_1);
-				strcpy(stu[b].english, english_1);
+				strcpy(stu[STUDENT].student, name_1);
+				strcpy(stu[STUDENT].studentnumber, nember_1);
+				strcpy(stu[STUDENT].major, major_1);
+				strcpy(stu[STUDENT].math, math_1);
+				strcpy(stu[STUDENT].english, english_1);
 				windows();
+				l = 200, z = 500;
+				while (l != z)
+				{
+					Textmiddle(250, l, 740, l + 50, 30, "NULL");
+					l += 60;
+				}
 				STUDENT += 1;
 				itoa(STUDENT, num, 10);
 				Textmiddle(850, 120, 900, 160, 23, num);
-				k = 1;
 			}
 			if (m.x > 50 && m.y > 0&& m.x < 130&& m.y < 40)
 			{
@@ -467,19 +459,19 @@ s:;
 void gohome(int q_1, int w_1, int e_1, int r_1, int v)
 {
 	int k = 0;
-	ExMessage m;// ¶¨ÒåÏûÏ¢±äÁ¿
+	ExMessage m;// å®šä¹‰æ¶ˆæ¯å˜é‡
 	while (k == 0)
 	{
-		// »ñÈ¡Ò»ÌõÊó±ê»ò°´¼üÏûÏ¢
+		// èŽ·å–ä¸€æ¡é¼ æ ‡æˆ–æŒ‰é”®æ¶ˆæ¯
 		m = getmessage(EM_MOUSE | EM_KEY);
 
 		switch (m.message)
 		{
 		case WM_LBUTTONDOWN:
-			// Èç¹ûµã×ó¼üµÄÍ¬Ê±°´ÏÂÁË Ctrl ¼ü
+			// å¦‚æžœç‚¹å·¦é”®çš„åŒæ—¶æŒ‰ä¸‹äº† Ctrl é”®
 			if (m.x > q_1 && m.y > w_1 && m.x < e_1 && m.y < r_1)
 			{
-				textmiddle(q_1, w_1, e_1, r_1, v, "·µ»Ø", 1);
+				textmiddle(q_1, w_1, e_1, r_1, v, "è¿”å›ž", 1);
 				k = 1;
 			}
 			break;
@@ -489,21 +481,21 @@ void gohome(int q_1, int w_1, int e_1, int r_1, int v)
 void windows()
 {
 	HWND hwd = GetHWnd();
-	SetWindowText(hwd, "Ñ§Éú¹ÜÀíÏµÍ³");
-	MessageBox(hwd, "³É¹¦", "ÌáÊ¾", MB_OKCANCEL);
+	SetWindowText(hwd, "å­¦ç”Ÿç®¡ç†ç³»ç»Ÿ");
+	MessageBox(hwd, "æˆåŠŸ", "æç¤º", MB_OKCANCEL);
 }
 void windows_1()
 {
 	HWND hwd = GetHWnd();
-	SetWindowText(hwd, "Ñ§Éú¹ÜÀíÏµÍ³");
-	MessageBox(hwd, "Ê§°Ü", "ÌáÊ¾", MB_OKCANCEL);
+	SetWindowText(hwd, "å­¦ç”Ÿç®¡ç†ç³»ç»Ÿ");
+	MessageBox(hwd, "å¤±è´¥", "æç¤º", MB_OKCANCEL);
 }
-void Textmiddle(int q, int w, int e, int r, int lotx, const char* text)//±êÌâ¾ÓÖÐ,lotx¿ØÖÆ×ÖÌå´óÐ¡£¨³¤¶È)
+void Textmiddle(int q, int w, int e, int r, int lotx, const char* text)//æ ‡é¢˜å±…ä¸­,lotxæŽ§åˆ¶å­—ä½“å¤§å°ï¼ˆé•¿åº¦)
 {
 	int xm, ym;
 	setfillcolor(RGB(159, 195, 5));
 	fillrectangle(q, w, e, r);
-	settextstyle(lotx, 0, "ºÚÌå");
+	settextstyle(lotx, 0, "é»‘ä½“");
 	char arr_2[100] = "";
 	strcpy(arr_2, text);
 	xm = q + (e - q) / 2 - textwidth(arr_2) / 2;
@@ -511,12 +503,12 @@ void Textmiddle(int q, int w, int e, int r, int lotx, const char* text)//±êÌâ¾ÓÖ
 	settextcolor(BLACK);
 	outtextxy(xm, ym, arr_2);
 }
-void textmiddle(int x, int y, int a, int b, int lotx_1, const char* test, int z)//ÎÄ×Ö¾ÓÖÐº¯Êý+°´Å¥Ð§¹û
+void textmiddle(int x, int y, int a, int b, int lotx_1, const char* test, int z)//æ–‡å­—å±…ä¸­å‡½æ•°+æŒ‰é’®æ•ˆæžœ
 {
 	int xm, ym;
 	settextcolor(BLACK);
 	setbkmode(TRANSPARENT);
-	if (z == 0)//zÅÐ¶Ï°´Å¥ÊÇ·ñ±»µã»÷
+	if (z == 0)//zåˆ¤æ–­æŒ‰é’®æ˜¯å¦è¢«ç‚¹å‡»
 	{
 		setfillcolor(RGB(159, 195, 5));
 	}
@@ -525,14 +517,14 @@ void textmiddle(int x, int y, int a, int b, int lotx_1, const char* test, int z)
 		setfillcolor(RGB(80, 195, 0));
 	}
 	fillrectangle(x, y, a, b);
-	settextstyle(lotx_1, 0, "¿¬Ìå");
+	settextstyle(lotx_1, 0, "æ¥·ä½“");
 	char arr_1[20] = "";
 	strcpy(arr_1, test);
 	xm = x + (a - x) / 2 - textwidth(arr_1) / 2;
 	ym = y + (b - y) / 2 - textheight(arr_1) / 2;
 	outtextxy(xm, ym, arr_1);
 }
-void Adduserimg()//Ñ§ÉúÐÅÏ¢Â¼Èë
+void Adduserimg()//å­¦ç”Ÿä¿¡æ¯å½•å…¥
 {
 
 	SetWorkingImage(&publicimg);
@@ -540,10 +532,10 @@ void Adduserimg()//Ñ§ÉúÐÅÏ¢Â¼Èë
 	cleardevice();
 	SetWorkingImage();
 	putimage(0, 0, &publicimg);
-	Textmiddle(50, 0, 130, 40, 30, "·µ»Ø");
-	Textmiddle(382, 0, 618, 150, 50, "ÐÅÏ¢Â¼Èë");
+	Textmiddle(50, 0, 130, 40, 30, "è¿”å›ž");
+	Textmiddle(382, 0, 618, 150, 50, "ä¿¡æ¯å½•å…¥");
 	sum();
-	Tab("ÔöÌí",200,500);
+	Tab("å¢žæ·»",200,500);
 	outstudate();
 }
 void Lookuser()
@@ -553,8 +545,8 @@ void Lookuser()
 	cleardevice();
 	SetWorkingImage();
 	putimage(0, 0, &publicimg);
-	Textmiddle(50, 0, 130, 40, 30, "·µ»Ø");
-	Textmiddle(382, 0, 618, 150, 50, "ÐÅÏ¢²é¿´");
+	Textmiddle(50, 0, 130, 40, 30, "è¿”å›ž");
+	Textmiddle(382, 0, 618, 150, 50, "ä¿¡æ¯æŸ¥çœ‹");
 	sum();
 	tab_11();
 	tab_22();
@@ -569,15 +561,15 @@ void Lookupuser()
 	cleardevice();
 	SetWorkingImage();
 	putimage(0, 0, &publicimg);
-	Textmiddle(50, 0, 130, 40, 30, "·µ»Ø");
-	Textmiddle(382, 0, 618, 150, 50, "ÐÅÏ¢²éÕÒ");
+	Textmiddle(50, 0, 130, 40, 30, "è¿”å›ž");
+	Textmiddle(382, 0, 618, 150, 50, "ä¿¡æ¯æŸ¥æ‰¾");
 	sum();
-	Textmiddle(400, 170, 600, 210, 30, "°´Ãû×Ö²éÕÒ");
+	Textmiddle(400, 170, 600, 210, 30, "æŒ‰åå­—æŸ¥æ‰¾");
 	Tab_1("", 220, 520);
 	ExMessage m;
 	while (k == 0)
 	{
-		// »ñÈ¡Ò»ÌõÊó±ê»ò°´¼üÏûÏ¢
+		// èŽ·å–ä¸€æ¡é¼ æ ‡æˆ–æŒ‰é”®æ¶ˆæ¯
 		m = getmessage(EM_MOUSE | EM_KEY);
 		switch (m.message)
 		{
@@ -589,7 +581,7 @@ void Lookupuser()
 			}
 			if (m.x > 400 && m.y > 170 && m.x < 600 && m.y < 210)
 			{
-				InputBox(name, 20, "ÇëÊäÈëÄãµÄÐÕÃû");
+				InputBox(name, 20, "è¯·è¾“å…¥ä½ çš„å§“å");
 				for (i = 0; i < STUDENT; i++)
 				{
 					if (strcmp(name,stu[i].student)==0)
@@ -613,39 +605,41 @@ void Lookupuser()
 }
 void Deleteuser()
 {
+	int l, z;
 	int k = 0;
-	int i,b;
+	int i,b=0;
 	char num[20];
+	char name_2[20];
 	SetWorkingImage(&publicimg);
 	setbkcolor(RGB(159, 195, 5));
 	cleardevice();
 	SetWorkingImage();
 	putimage(0, 0, &publicimg);
-	Textmiddle(50, 0, 130, 40, 30, "·µ»Ø");
-	Textmiddle(382, 0, 618, 150, 50, "ÐÅÏ¢É¾³ý");
+	Textmiddle(50, 0, 130, 40, 30, "è¿”å›ž");
+	Textmiddle(382, 0, 618, 150, 50, "ä¿¡æ¯åˆ é™¤");
 	sum();
-	Textmiddle(400, 170, 600, 210, 30, "°´Ãû×Ö²éÕÒ");
-	Textmiddle(400,560 , 600, 600, 30, "É¾³ý");
+	Textmiddle(400, 170, 600, 210, 30, "æŒ‰åå­—æŸ¥æ‰¾");
+	Textmiddle(400,560 , 600, 600, 30, "åˆ é™¤");
 	Tab_1("", 220, 520);
 	ExMessage m;
 	while (k == 0)
 	{
-		// »ñÈ¡Ò»ÌõÊó±ê»ò°´¼üÏûÏ¢
+		// èŽ·å–ä¸€æ¡é¼ æ ‡æˆ–æŒ‰é”®æ¶ˆæ¯
 		m = getmessage(EM_MOUSE | EM_KEY);
 		switch (m.message)
 		{
 		case WM_LBUTTONDOWN:
-			if (m.x > 50 && m.y > 0 && m.x < 130 && m.y < 40)
+			if (m.x > 50 && m.y > 0 && m.x < 130 && m.y < 40)//è¿”å›žæŒ‰é’®
 			{
 				k = 1;
 				break;
 			}
 			if (m.x > 400 && m.y > 170 && m.x < 600 && m.y < 210)
 			{
-				InputBox(name, 20, "ÇëÊäÈëÄãµÄÐÕÃû");
+				InputBox(name_2, 20, "è¯·è¾“å…¥ä½ çš„å§“å");
 				for (i = 0; i < STUDENT; i++)
 				{
-					if (strcmp(name, stu[i].student) == 0)
+					if (strcmp(name_2, stu[i].student) == 0)
 					{
 						windows();
 						Textmiddle(250, 220, 740, 270, 30, stu[i].student);
@@ -654,8 +648,9 @@ void Deleteuser()
 						Textmiddle(250, 400, 740, 450, 30, stu[i].math);
 						Textmiddle(250, 460, 740, 510, 30, stu[i].english);
 						b = i;
+						break;
 					}
-					else if (i == STUDENT && (strcmp(name, stu[i].student) != 0))
+					if (i == STUDENT - 1 && strcmp(name_2, stu[i].student) != 0)
 					{
 						windows_1();
 					}
@@ -670,14 +665,22 @@ void Deleteuser()
 					strcpy(stu[b].major, stu[b + 1].major);
 					strcpy(stu[b].math, stu[b + 1].math);
 					strcpy(stu[b].english, stu[b + 1].english);
-					STUDENT -= 1;
-					itoa(STUDENT, num, 10);
-					Textmiddle(850, 120, 900, 160, 23, num);
+					b += 1;
 				}
+				STUDENT = STUDENT - 1;
 				windows();
+				l = 220, z = 520;
+				while (l != z)
+				{
+					Textmiddle(250, l, 740, l + 50, 30, "NULL");
+					l += 60;
+				}
 			}
+			itoa(STUDENT, num, 10);
+			Textmiddle(850, 120, 900, 160, 23, num);
 			break;
 		}
+		
 	}
 }
 void outport()
@@ -687,14 +690,19 @@ void outport()
 	cleardevice();
 	SetWorkingImage();
 	putimage(0, 0, &publicimg);
-	Textmiddle(50, 0, 130, 40, 30, "·µ»Ø");
-	Textmiddle(382, 0, 618, 150, 50, "ÐÅÏ¢µ¼³ö");
+	Textmiddle(50, 0, 130, 40, 30, "è¿”å›ž");
+	Textmiddle(382, 0, 618, 150, 50, "ä¿¡æ¯å¯¼å‡º");
 	sum();
 	tab_1();
 	tab_2();
 }
 void Modifyuser()
 {
+	char name2[20];
+	char nember2[20];
+	char major2[20];
+	char math2[20];
+	char english2[20];
 	char str[20];
 	int k = 0;
 	int i,b;
@@ -703,15 +711,15 @@ void Modifyuser()
 	cleardevice();
 	SetWorkingImage();
 	putimage(0, 0, &publicimg);
-	Textmiddle(50, 0, 130, 40, 30, "·µ»Ø");
-	Textmiddle(382, 0, 618, 150, 50, "ÐÅÏ¢ÐÞ¸Ä");
-	Textmiddle(400, 170, 600, 210,30, "°´Ãû×Ö²éÕÒ");
-	Tab_1("ÐÞ¸Ä",220, 520);
-	Textmiddle(400, 560, 600, 600, 30, "±£´æ");
+	Textmiddle(50, 0, 130, 40, 30, "è¿”å›ž");
+	Textmiddle(382, 0, 618, 150, 50, "ä¿¡æ¯ä¿®æ”¹");
+	Textmiddle(400, 170, 600, 210,30, "æŒ‰åå­—æŸ¥æ‰¾");
+	Tab_1("ä¿®æ”¹",220, 520);
+	Textmiddle(400, 560, 600, 600, 30, "ä¿å­˜");
 	ExMessage m;
 	while (k == 0)
 	{
-		// »ñÈ¡Ò»ÌõÊó±ê»ò°´¼üÏûÏ¢
+		// èŽ·å–ä¸€æ¡é¼ æ ‡æˆ–æŒ‰é”®æ¶ˆæ¯
 		m = getmessage(EM_MOUSE | EM_KEY);
 		switch (m.message)
 		{
@@ -723,7 +731,7 @@ void Modifyuser()
 			}
 			if (m.x > 400 && m.y > 170 && m.x < 600 && m.y < 210)
 			{
-				InputBox(name, 20, "ÇëÊäÈëÄãµÄÐÕÃû");
+				InputBox(name, 20, "è¯·è¾“å…¥ä½ çš„å§“å");
 				for (i = 0; i < STUDENT; i++)
 				{
 					if (strcmp(name, stu[i].student) == 0)
@@ -734,6 +742,11 @@ void Modifyuser()
 						Textmiddle(250, 400, 740, 450, 30, stu[i].math);
 						Textmiddle(250, 460, 740, 510, 30, stu[i].english);
 						windows();
+						strcpy(name2, stu[i].student);
+						strcpy(nember2, stu[i].studentnumber);
+						strcpy(major2, stu[i].major);
+						strcpy(math2, stu[i].math);
+						strcpy(english2, stu[i].english);
 						b = i;
 						break;
 					}
@@ -741,36 +754,41 @@ void Modifyuser()
 			}
 			if (m.x > 750 && m.y > 220 && m.x < 850 && m.y < 270)
 			{
-				InputBox(name, 20, "ÇëÊäÈëÄãµÄÃû×Ö", 0, "NULL");
+				InputBox(name, 20, "è¯·è¾“å…¥ä½ çš„åå­—", 0, "NULL");
 				Textmiddle(250, 220, 740, 270, 30, name);
+				strcpy(name2, name);
 			}
 			if (m.x > 750 && m.y > 280 && m.x < 850 && m.y < 330)
 			{
-				InputBox(nember, 20, "ÇëÊäÈëÄãµÄÑ§ºÅ", 0, "NULL");
+				InputBox(nember, 20, "è¯·è¾“å…¥ä½ çš„å­¦å·", 0, "NULL");
 				Textmiddle(250, 280, 740, 330, 30, nember);
+				strcpy(nember2, nember);
 			}
 			if (m.x > 750 && m.y > 340&& m.x < 850 && m.y <390)
 			{
-				InputBox(major, 20, "ÇëÊäÈëÄãµÄ×¨Òµ", 0, "NULL");
+				InputBox(major, 20, "è¯·è¾“å…¥ä½ çš„ä¸“ä¸š", 0, "NULL");
 				Textmiddle(250, 340, 740, 390, 30, major);
+				strcpy(major2, major);
 			}
 			if (m.x > 750 && m.y > 400 && m.x < 850 && m.y < 450)
 			{
-				InputBox(math, 20, "ÇëÊäÈëÄãµÄÊýÑ§³É¼¨", 0, "NULL");
+				InputBox(math, 20, "è¯·è¾“å…¥ä½ çš„æ•°å­¦æˆç»©", 0, "NULL");
 				Textmiddle(250, 400, 740,450, 30, math);
+				strcpy(math2,math);
 			}
 			if (m.x > 750 && m.y > 460 && m.x < 850 && m.y < 510)
 			{
-				InputBox(english, 20, "ÇëÊäÈëÄãµÄÓ¢Óï", 0, "NULL");
+				InputBox(english, 20, "è¯·è¾“å…¥ä½ çš„è‹±è¯­", 0, "NULL");
 				Textmiddle(250, 460, 740, 510, 30, english);
+				strcpy(english2, english);
 			}
 			if (m.x > 400 && m.y > 560 && m.x < 600 && m.y < 600)
 			{
-				strcpy(stu[b].student, name);
-				strcpy(stu[b].studentnumber, nember);
-				strcpy(stu[b].major, major);
-				strcpy(stu[b].math, math);
-				strcpy(stu[b].english, english);
+				strcpy(stu[b].student, name2);
+				strcpy(stu[b].studentnumber, nember2);
+				strcpy(stu[b].major, major2);
+				strcpy(stu[b].math, math2);
+				strcpy(stu[b].english, english2);
 				windows();
 			}
 			break;
@@ -782,88 +800,89 @@ int main()
 	instudate();
     int i;
 	struct Butto but[8] = {
-		{250, 0, 750, 168, "Ñ§Éú¹ÜÀíÏµÍ³",0},
-		{300,168,700,222,"ÐÅÏ¢Â¼Èë",0},
-		{300,222,700,276,"ÐÅÏ¢²é¿´",0},
-		{300,276,700,330,"ÐÅÏ¢²éÕÒ",0},
-		{300,330,700,384,"ÐÅÏ¢É¾³ý",0},
-		{300,384,700,442,"ÐÅÏ¢µ¼³ö",0},
-		{300,442,700,500,"ÐÅÏ¢ÐÞ¸Ä",0},
-		{300,500,700,558,"ÍË³öÏµÍ³",0}
+		{250, 0, 750, 168, "å­¦ç”Ÿç®¡ç†ç³»ç»Ÿ",0},
+		{300,168,700,222,"ä¿¡æ¯å½•å…¥",0},
+		{300,222,700,276,"ä¿¡æ¯æŸ¥çœ‹",0},
+		{300,276,700,330,"ä¿¡æ¯æŸ¥æ‰¾",0},
+		{300,330,700,384,"ä¿¡æ¯åˆ é™¤",0},
+		{300,384,700,442,"ä¿¡æ¯å¯¼å‡º",0},
+		{300,442,700,500,"ä¿¡æ¯ä¿®æ”¹",0},
+		{300,500,700,558,"é€€å‡ºç³»ç»Ÿ",0}
 	};
-s: initgraph(1000, 618,EW_SHOWCONSOLE);
+initgraph(1000, 618);
 	setbkcolor(RGB(159, 195, 5));
-	cleardevice();
+s: cleardevice();
 for (i = 0; i < 8; i++)
 	{
 		textmiddle(but[i].x1, but[i].y1, but[i].x2, but[i].y2, 45, but[i].butto, but[i].z);
-	}//ÏÔÊ¾²Ëµ¥
+	}//æ˜¾ç¤ºèœå•
 	i = 0;
-	int n;//ÅÐ¶ÏÊó±êµÄÐÐÎª
+	int n;//åˆ¤æ–­é¼ æ ‡çš„è¡Œä¸º
 	ExMessage m;
-	while (i != 8)
+	while (TRUE)
 	{
-		// »ñÈ¡Ò»ÌõÊó±ê»ò°´¼üÏûÏ¢
+		// èŽ·å–ä¸€æ¡é¼ æ ‡æˆ–æŒ‰é”®æ¶ˆæ¯
 		m = getmessage(EM_MOUSE | EM_KEY);
 		switch (m.message)
 		{
 		case WM_LBUTTONDOWN:
 			for (i = 1; i < 8; i++)
 			{
-				if (m.x > but[i].x1 && m.y > but[i].y1 && m.x < but[i].x2 && m.y < but[i].y2 && i == 1)//ÅÐ¶ÏÊó±êÊÇ·ñÔÚ°´Å¥ÇøÓò
+				if (m.x > but[i].x1 && m.y > but[i].y1 && m.x < but[i].x2 && m.y < but[i].y2 && i == 1)//åˆ¤æ–­é¼ æ ‡æ˜¯å¦åœ¨æŒ‰é’®åŒºåŸŸ
 				{
 					n = 1;
 					textmiddle(but[i].x1, but[i].y1, but[i].x2, but[i].y2, 45, but[i].butto, n);
 					Adduserimg();
-					outstudate();//Â¼ÈëÍê³Éºóµ¼³öÊý¾Ý
-					goto s;//ÆÈ²»µÃÒÑ°¡
+					outstudate();//å½•å…¥å®ŒæˆåŽå¯¼å‡ºæ•°æ®
+					goto s;//è¿«ä¸å¾—å·²å•Š
 				}
-				if (m.x > but[i].x1 && m.y > but[i].y1 && m.x < but[i].x2 && m.y < but[i].y2 && i == 2)//ÅÐ¶ÏÊó±êÊÇ·ñÔÚ°´Å¥ÇøÓò
+				if (m.x > but[i].x1 && m.y > but[i].y1 && m.x < but[i].x2 && m.y < but[i].y2 && i == 2)//åˆ¤æ–­é¼ æ ‡æ˜¯å¦åœ¨æŒ‰é’®åŒºåŸŸ
 				{
 					n = 1;
 					textmiddle(but[i].x1, but[i].y1, but[i].x2, but[i].y2, 45, but[i].butto, n);
 					Lookuser();
-					goto s;//ÆÈ²»µÃÒÑ°¡
+					goto s;//è¿«ä¸å¾—å·²å•Š
 				}
-				if (m.x > but[i].x1 && m.y > but[i].y1 && m.x < but[i].x2 && m.y < but[i].y2 && i == 3)//ÅÐ¶ÏÊó±êÊÇ·ñÔÚ°´Å¥ÇøÓò
+				if (m.x > but[i].x1 && m.y > but[i].y1 && m.x < but[i].x2 && m.y < but[i].y2 && i == 3)//åˆ¤æ–­é¼ æ ‡æ˜¯å¦åœ¨æŒ‰é’®åŒºåŸŸ
 				{
 					n = 1;
 					textmiddle(but[i].x1, but[i].y1, but[i].x2, but[i].y2, 45, but[i].butto, n);
 					Lookupuser();
-					goto s;//ÆÈ²»µÃÒÑ°¡
+					goto s;//è¿«ä¸å¾—å·²å•Š
 				}
-				if (m.x > but[i].x1 && m.y > but[i].y1 && m.x < but[i].x2 && m.y < but[i].y2 && i == 4)//ÅÐ¶ÏÊó±êÊÇ·ñÔÚ°´Å¥ÇøÓò
+				if (m.x > but[i].x1 && m.y > but[i].y1 && m.x < but[i].x2 && m.y < but[i].y2 && i == 4)//åˆ¤æ–­é¼ æ ‡æ˜¯å¦åœ¨æŒ‰é’®åŒºåŸŸ
 				{
 					n = 1;
 					textmiddle(but[i].x1, but[i].y1, but[i].x2, but[i].y2, 45, but[i].butto, n);
 					Deleteuser();
 					outstudate();
-					goto s;//ÆÈ²»µÃÒÑ°¡
+					goto s;//è¿«ä¸å¾—å·²å•Š
 				}
-				if (m.x > but[i].x1 && m.y > but[i].y1 && m.x < but[i].x2 && m.y < but[i].y2 && i == 5)//ÅÐ¶ÏÊó±êÊÇ·ñÔÚ°´Å¥ÇøÓò
+				if (m.x > but[i].x1 && m.y > but[i].y1 && m.x < but[i].x2 && m.y < but[i].y2 && i == 5)//åˆ¤æ–­é¼ æ ‡æ˜¯å¦åœ¨æŒ‰é’®åŒºåŸŸ
 				{
 					n = 1;
 					textmiddle(but[i].x1, but[i].y1, but[i].x2, but[i].y2, 45, but[i].butto, n);
 					 outport();
-					goto s;//ÆÈ²»µÃÒÑ°¡
+					goto s;//è¿«ä¸å¾—å·²å•Š
 				}
-				if (m.x > but[i].x1 && m.y > but[i].y1 && m.x < but[i].x2 && m.y < but[i].y2 && i == 6)//ÅÐ¶ÏÊó±êÊÇ·ñÔÚ°´Å¥ÇøÓò
+				if (m.x > but[i].x1 && m.y > but[i].y1 && m.x < but[i].x2 && m.y < but[i].y2 && i == 6)//åˆ¤æ–­é¼ æ ‡æ˜¯å¦åœ¨æŒ‰é’®åŒºåŸŸ
 				{
 					n = 1;
 					textmiddle(but[i].x1, but[i].y1, but[i].x2, but[i].y2, 45, but[i].butto, n);
 					Modifyuser();
 					outstudate();
-					goto s;//ÆÈ²»µÃÒÑ°¡
+					goto s;//è¿«ä¸å¾—å·²å•Š
 				}
-				if (m.x > but[i].x1 && m.y > but[i].y1 && m.x < but[i].x2 && m.y < but[i].y2 && i == 7)//ÅÐ¶ÏÊó±êÊÇ·ñÔÚ°´Å¥ÇøÓò
+				if (m.x > but[i].x1 && m.y > but[i].y1 && m.x < but[i].x2 && m.y < but[i].y2 && i == 7)//åˆ¤æ–­é¼ æ ‡æ˜¯å¦åœ¨æŒ‰é’®åŒºåŸŸ
 				{
 					n = 1;
 					textmiddle(but[i].x1, but[i].y1, but[i].x2, but[i].y2, 45, but[i].butto, n);
+					goto d;
 				}
 			}
 			break;
 		}
 	}
-	closegraph();
+	d:closegraph();
 	return 0;
 }
